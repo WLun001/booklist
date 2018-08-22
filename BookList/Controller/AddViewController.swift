@@ -97,11 +97,13 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     
     @IBAction func saveBtnPressed(_ sender: Any) {
         saveToDb()
-        self.dismiss(animated: true, completion: nil)
+        
     }
+    
     func saveToDb() {
         let entity = NSEntityDescription.entity(forEntityName: "Book", in: managedContext)!
         let book = NSManagedObject(entity: entity, insertInto: managedContext)
+        book.setValue(UUID.init(), forKey: "id")
         book.setValue(titleTextField.text, forKey: "title")
         book.setValue(categoryList[selectedCategoryRow], forKey: "category")
         book.setValue(authorTextField.text, forKey: "author")
@@ -111,9 +113,20 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         
         do {
             try managedContext.save()
+            showAlert(message: "Saves Successfully")
         } catch {
-            print(error.localizedDescription)
+            showAlert(message: ("Error: \(error.localizedDescription)"))
         }
+    }
+    
+    func showAlert(message: String) {
+        let alertController = UIAlertController(title: "Saved Status", message:
+            message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (action) in
+            self.navigationController?.popToRootViewController(animated: true)
+            
+        }))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func rounding(num: Float) -> Float {

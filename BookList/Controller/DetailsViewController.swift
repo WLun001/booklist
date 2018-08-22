@@ -7,11 +7,31 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailsViewController: UIViewController {
+    
+    var appDelegate: AppDelegate!
+    var managedContext: NSManagedObjectContext!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Error in app")
+            return
+        }
+        appDelegate = delegate
+        managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Book")
+        do {
+            let books = try managedContext.fetch(fetchRequest)
+            print(books.count)
+            
+        } catch {
+            print(error.localizedDescription)
+        }
 
         // Do any additional setup after loading the view.
     }
