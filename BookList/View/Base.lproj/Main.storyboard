@@ -271,7 +271,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="rDH-MW-MrU"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Book" id="91x-Ox-fGK"/>
+                    <navigationItem key="navigationItem" title="Add Book" id="91x-Ox-fGK">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="gay-S5-JLk">
+                            <connections>
+                                <action selector="saveBtnPressed:" destination="dKE-GR-5bK" id="DH0-0P-J3v"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authorTextField" destination="O3E-sZ-dV3" id="N5t-7C-5Ox"/>
                         <outlet property="categoryPicker" destination="ymU-6U-AUx" id="I1k-rc-KPf"/>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
     @IBOutlet weak var titleTextField: UITextField!
@@ -25,9 +26,13 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
     
     let statusList = ["Read", "Not Yet Read", "Reading"]
-    let category = ["Fiction", "Adventure", "Romance"]
+    let categoryList = ["Fiction", "Adventure", "Romance"]
+    var selectedCategoryRow: Int = 0
+    var selectedStatusRow: Int = 0
     
     let dateFormatter = DateFormatter()
+    var appDelegate: AppDelegate!
+    var managedContext: NSManagedObjectContext!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +43,13 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         categoryPicker.delegate = self
         statusPicker.dataSource = self
         statusPicker.delegate = self
+        
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Error in app")
+            return
+        }
+        appDelegate = delegate
+        managedContext = appDelegate.persistentContainer.viewContext
         
         // Do any additional setup after loading the view.
     }
@@ -53,7 +65,7 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == Picker.categoryPicker.rawValue {
-            return category.count
+            return categoryList.count
         } else {
             return statusList.count
         }
@@ -62,9 +74,17 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == Picker.categoryPicker.rawValue {
-            return category[row]
+            return categoryList[row]
         } else {
             return statusList[row]
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == Picker.categoryPicker.rawValue {
+            selectedCategoryRow = row
+        } else {
+            selectedStatusRow = row
         }
     }
 
@@ -75,8 +95,25 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         ratingLabel.text = String(rounding(num: ratingSlider.value))
     }
     
+    @IBAction func saveBtnPressed(_ sender: Any) {
+        saveToDb()
+        self.dismiss(animated: true, completion: nil)
+    }
     func saveToDb() {
+        let entity = NSEntityDescription.entity(forEntityName: "Book", in: managedContext)!
+        let book = NSManagedObject(entity: entity, insertInto: managedContext)
+        book.setValue(titleTextField.text, forKey: "title")
+        book.setValue(categoryList[selectedCategoryRow], forKey: "category")
+        book.setValue(authorTextField.text, forKey: "author")
+        book.setValue(datePicker.date, forKey: "published_date")
+        book.setValue(ratingSlider.value, forKey: "ratings")
+        book.setValue(statusList[selectedStatusRow], forKey: "status")
         
+        do {
+            try managedContext.save()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     func rounding(num: Float) -> Float {
