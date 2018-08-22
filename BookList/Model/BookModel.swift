@@ -15,7 +15,7 @@ class BookModel {
     var category: String
     var publishedDate: Date
     var status: String
-    var ratings: Int
+    var ratings: Float
     
     init(id: String, title: String, author: String, category: String, publishedDate: Date, status: String, ratings: Int) {
         self.id = id

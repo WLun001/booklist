@@ -231,12 +231,15 @@
                                     <action selector="datePickerSelectionChange:" destination="dKE-GR-5bK" eventType="valueChanged" id="Ric-rT-NVl"/>
                                 </connections>
                             </datePicker>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Sbg-ZM-3V2">
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="Sbg-ZM-3V2">
                                 <rect key="frame" x="191" y="469" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderSelectionChange:" destination="dKE-GR-5bK" eventType="valueChanged" id="AC0-G0-IRO"/>
+                                </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OM-9Q-bhu" userLabel="ratingLabel">
-                                <rect key="frame" x="102" y="473" width="25" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OM-9Q-bhu" userLabel="ratingLabel">
+                                <rect key="frame" x="102" y="473" width="43" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -274,6 +277,7 @@
                         <outlet property="categoryPicker" destination="ymU-6U-AUx" id="I1k-rc-KPf"/>
                         <outlet property="dateLabel" destination="eyr-b4-aNq" id="9LI-Gj-YDu"/>
                         <outlet property="datePicker" destination="P7j-cv-CGP" id="HEZ-fN-siG"/>
+                        <outlet property="ratingLabel" destination="2OM-9Q-bhu" id="jNJ-Dd-20P"/>
                         <outlet property="ratingSlider" destination="Sbg-ZM-3V2" id="p9C-Y5-knj"/>
                         <outlet property="statusPicker" destination="GKP-CX-Tsj" id="jHl-zi-nZd"/>
                         <outlet property="titleTextField" destination="1Kc-3G-tmI" id="Bvi-HN-zE4"/>

@@ -15,6 +15,7 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     @IBOutlet weak var authorTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var ratingSlider: UISlider!
     @IBOutlet weak var statusPicker: UIPickerView!
     
@@ -70,10 +71,18 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     @IBAction func datePickerSelectionChange(_ sender: UIDatePicker) {
         dateLabel.text = dateFormatter.string(from: datePicker.date)
     }
+    @IBAction func sliderSelectionChange(_ sender: Any) {
+        ratingLabel.text = String(rounding(num: ratingSlider.value))
+    }
     
     func saveToDb() {
         
     }
+    
+    func rounding(num: Float) -> Float {
+        return (num * 100).rounded() / 100
+    }
+    
     
 
     /*
