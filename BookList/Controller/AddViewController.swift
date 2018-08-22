@@ -8,11 +8,29 @@
 
 import UIKit
 
-class AddViewController: UIViewController {
+class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
+    @IBOutlet weak var titleTextField: UITextField!
+    
+    @IBOutlet weak var categoryPicker: UIPickerView!
+    @IBOutlet weak var authorTextField: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var ratingSlider: UISlider!
+    @IBOutlet weak var statusPicker: UIPickerView!
+    
+    enum Picker: Int {
+        case categoryPicker = 0
+        case statusPicker = 1
+    }
+    
+    let statusList = ["Read", "Not Yet Read", "Reading"]
+    let category = ["Fiction", "Adventure", "Romance"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        categoryPicker.dataSource = self
+        categoryPicker.delegate = self
+        statusPicker.dataSource = self
+        statusPicker.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -20,6 +38,28 @@ class AddViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == Picker.categoryPicker.rawValue {
+            return category.count
+        } else {
+            return statusList.count
+        }
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == Picker.categoryPicker.rawValue {
+            return category[row]
+        } else {
+            return statusList[row]
+        }
+    }
+
     
 
     /*
