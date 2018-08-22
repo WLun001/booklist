@@ -27,10 +27,13 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        datePicker.date = NSDate.init(timeIntervalSinceNow: 0) as Date
+        
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
         statusPicker.dataSource = self
         statusPicker.delegate = self
+        
         // Do any additional setup after loading the view.
     }
 
@@ -60,6 +63,9 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         }
     }
 
+    @IBAction func datePickerSelectionChange(_ sender: UIDatePicker) {
+        print(datePicker.date)
+    }
     
 
     /*
