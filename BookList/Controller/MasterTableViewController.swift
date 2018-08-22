@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class MasterTableViewController: UITableViewController {
     
-    let foodList = [ "Pizza", "Pasta", "Hamburger", "Steak"]
+    var bookList = [BookModel]()
+    var appDelegate: AppDelegate!
+    var managedContext: NSManagedObjectContext!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +23,28 @@ class MasterTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Error in app")
+            return
+        }
+        appDelegate = delegate
+        managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Book")
+        do {
+            let books = try managedContext.fetch(fetchRequest)
+            for book in books {
+                bookList.append(BookModel(
+                    id: book.value(forKey: "id") as! UUID,
+                    title: book.value(forKey: "title") as! String,
+                    author: book.value(forKey: "author") as! String,
+                    category: book.value(forKey: "category") as! String,
+                    publishedDate: book.value(forKey: "published_date") as! Date,
+                    status: book.value(forKey: "status") as! String,
+                    ratings: book.value(forKey: "ratings") as! Float))
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,7 +61,7 @@ class MasterTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return foodList.count
+        return bookList.count
     }
 
     
@@ -48,7 +73,7 @@ class MasterTableViewController: UITableViewController {
             cell = UITableViewCell(style: UITableViewCellStyle.default,
                                    reuseIdentifier: "BookCell")
         }
-        cell!.textLabel!.text = foodList[indexPath.row]
+        cell!.textLabel!.text = bookList[indexPath.row].title
         return cell!
     }
     
