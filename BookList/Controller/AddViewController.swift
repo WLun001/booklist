@@ -14,6 +14,7 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var authorTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var ratingSlider: UISlider!
     @IBOutlet weak var statusPicker: UIPickerView!
     
@@ -24,10 +25,13 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     
     let statusList = ["Read", "Not Yet Read", "Reading"]
     let category = ["Fiction", "Adventure", "Romance"]
+    
+    let dateFormatter = DateFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        datePicker.date = NSDate.init(timeIntervalSinceNow: 0) as Date
+        datePicker.setDate(Date(), animated:true)
+        dateFormatter.dateFormat = "MMM dd, yyyy"
         
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
@@ -64,7 +68,11 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
 
     @IBAction func datePickerSelectionChange(_ sender: UIDatePicker) {
-        print(datePicker.date)
+        dateLabel.text = dateFormatter.string(from: datePicker.date)
+    }
+    
+    func saveToDb() {
+        
     }
     
 
