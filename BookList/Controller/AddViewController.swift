@@ -10,8 +10,12 @@ import UIKit
 import CoreData
 
 class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
-    @IBOutlet weak var titleTextField: UITextField!
+    enum Picker: Int {
+        case categoryPicker = 0
+        case statusPicker = 1
+    }
     
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var authorTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -19,11 +23,6 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var ratingSlider: UISlider!
     @IBOutlet weak var statusPicker: UIPickerView!
-    
-    enum Picker: Int {
-        case categoryPicker = 0
-        case statusPicker = 1
-    }
     
     let statusList = ["Read", "Not Yet Read", "Reading"]
     let categoryList = ["Fiction", "Adventure", "Romance"]

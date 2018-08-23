@@ -10,13 +10,13 @@
 		BDA938A1210D79480090D97D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA938A0210D79480090D97D /* AppDelegate.swift */; };
 		BDA938A3210D79480090D97D /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA938A2210D79480090D97D /* EditViewController.swift */; };
 		BDA938A6210D79480090D97D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDA938A4210D79480090D97D /* Main.storyboard */; };
-		BDA938A9210D79480090D97D /* BookList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BDA938A7210D79480090D97D /* BookList.xcdatamodeld */; };
 		BDA938AB210D79490090D97D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDA938AA210D79490090D97D /* Assets.xcassets */; };
 		BDA938AE210D79490090D97D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDA938AC210D79490090D97D /* LaunchScreen.storyboard */; };
 		BDB120FB212CE8EE003D7467 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB120FA212CE8EE003D7467 /* DetailsViewController.swift */; };
 		BDB120FD212CE95D003D7467 /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB120FC212CE95D003D7467 /* MasterTableViewController.swift */; };
 		BDB12103212CF245003D7467 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB12101212CF02A003D7467 /* BookModel.swift */; };
 		BDB655672118A8FB00C88428 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB655662118A8FB00C88428 /* AddViewController.swift */; };
+		BDBE0280212F11B4007038BA /* BookList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BDBE027E212F11B4007038BA /* BookList.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +24,6 @@
 		BDA938A0210D79480090D97D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDA938A2210D79480090D97D /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		BDA938A5210D79480090D97D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BDA938A8210D79480090D97D /* BookList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookList.xcdatamodel; sourceTree = "<group>"; };
 		BDA938AA210D79490090D97D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BDA938AD210D79490090D97D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BDA938AF210D79490090D97D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -32,6 +31,7 @@
 		BDB120FC212CE95D003D7467 /* MasterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTableViewController.swift; sourceTree = "<group>"; };
 		BDB12101212CF02A003D7467 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		BDB655662118A8FB00C88428 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		BDBE027F212F11B4007038BA /* BookList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookList.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,7 @@
 		BDB12100212CED3D003D7467 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BDA938A7210D79480090D97D /* BookList.xcdatamodeld */,
+				BDBE027E212F11B4007038BA /* BookList.xcdatamodeld */,
 				BDB12101212CF02A003D7467 /* BookModel.swift */,
 			);
 			path = Model;
@@ -178,8 +178,8 @@
 				BDA938A3210D79480090D97D /* EditViewController.swift in Sources */,
 				BDB120FD212CE95D003D7467 /* MasterTableViewController.swift in Sources */,
 				BDA938A1210D79480090D97D /* AppDelegate.swift in Sources */,
+				BDBE0280212F11B4007038BA /* BookList.xcdatamodeld in Sources */,
 				BDB655672118A8FB00C88428 /* AddViewController.swift in Sources */,
-				BDA938A9210D79480090D97D /* BookList.xcdatamodeld in Sources */,
 				BDB120FB212CE8EE003D7467 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,12 +378,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		BDA938A7210D79480090D97D /* BookList.xcdatamodeld */ = {
+		BDBE027E212F11B4007038BA /* BookList.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				BDA938A8210D79480090D97D /* BookList.xcdatamodel */,
+				BDBE027F212F11B4007038BA /* BookList.xcdatamodel */,
 			);
-			currentVersion = BDA938A8210D79480090D97D /* BookList.xcdatamodel */;
+			currentVersion = BDBE027F212F11B4007038BA /* BookList.xcdatamodel */;
 			path = BookList.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

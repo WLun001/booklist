@@ -17,7 +17,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var publishedDateLabel: UILabel!
     @IBOutlet weak var ratingsLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
-    var selectedBook: BookModel!
+    var selectedBook: Book!
     let dateFormatter = DateFormatter()
 
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ class DetailsViewController: UIViewController {
             titleLabel.text = book.title
             categoryLabel.text = book.category
             authorLabel.text = book.author
-            publishedDateLabel.text = dateFormatter.string(from: book.publishedDate)
+            publishedDateLabel.text = dateFormatter.string(from: book.published_date!)
             ratingsLabel.text = String(book.ratings)
             statusLabel.text = book.status
         }

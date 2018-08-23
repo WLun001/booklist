@@ -11,7 +11,7 @@ import CoreData
 
 class MasterTableViewController: UITableViewController {
     
-    var bookList = [BookModel]()
+    var bookList = [Book]()
     var appDelegate: AppDelegate!
     var managedContext: NSManagedObjectContext!
 
@@ -29,19 +29,10 @@ class MasterTableViewController: UITableViewController {
         }
         appDelegate = delegate
         managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Book")
+       let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Book")
         do {
-            let books = try managedContext.fetch(fetchRequest)
-            for book in books {
-                bookList.append(BookModel(
-                    id: book.value(forKey: "id") as! UUID,
-                    title: book.value(forKey: "title") as! String,
-                    author: book.value(forKey: "author") as! String,
-                    category: book.value(forKey: "category") as! String,
-                    publishedDate: book.value(forKey: "published_date") as! Date,
-                    status: book.value(forKey: "status") as! String,
-                    ratings: book.value(forKey: "ratings") as! Float))
-            }
+            bookList = try managedContext.fetch(fetchRequest) as! [Book]
+            bookList.sort(by: { ($0.title?.lowercased())! < ($1.title?.lowercased())!})
         } catch {
             print(error.localizedDescription)
         }
