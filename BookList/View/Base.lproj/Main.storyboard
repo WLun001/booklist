@@ -236,14 +236,14 @@
                                     <!--2018-08-06 16:19:06 +0000-->
                                 </date>
                                 <connections>
-                                    <action selector="datePickerSelectionChange:" destination="dKE-GR-5bK" eventType="valueChanged" id="Ric-rT-NVl"/>
+                                    <action selector="datePickerDidSelect:" destination="dKE-GR-5bK" eventType="valueChanged" id="Ric-rT-NVl"/>
                                 </connections>
                             </datePicker>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="Sbg-ZM-3V2">
                                 <rect key="frame" x="191" y="469" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="sliderSelectionChange:" destination="dKE-GR-5bK" eventType="valueChanged" id="AC0-G0-IRO"/>
+                                    <action selector="ratingsSliderDidSelect:" destination="dKE-GR-5bK" eventType="valueChanged" id="AC0-G0-IRO"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OM-9Q-bhu" userLabel="ratingLabel">
@@ -387,14 +387,14 @@
                                     <!--2018-08-06 16:19:06 +0000-->
                                 </date>
                                 <connections>
-                                    <action selector="datePickerSelectionChange:" destination="FTS-fX-FHF" eventType="valueChanged" id="OE8-g4-fN9"/>
+                                    <action selector="datePickerDidSelect:" destination="FTS-fX-FHF" eventType="valueChanged" id="EtK-is-o1Q"/>
                                 </connections>
                             </datePicker>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="PkA-mf-pfq">
                                 <rect key="frame" x="191" y="469" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="sliderSelectionChange:" destination="FTS-fX-FHF" eventType="valueChanged" id="17z-hd-4if"/>
+                                    <action selector="ratingsSliderDidSelect:" destination="FTS-fX-FHF" eventType="valueChanged" id="NnT-dg-UXh"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aY7-Jl-h7b" userLabel="ratingLabel">
@@ -440,20 +440,17 @@
                     <connections>
                         <outlet property="authorTextField" destination="mkp-Z3-Ekf" id="hde-bF-tL4"/>
                         <outlet property="categoryPicker" destination="Pfy-Xh-VdH" id="Fs2-oR-ETK"/>
-                        <outlet property="dataLabel" destination="YYH-Nh-DNb" id="EC9-KD-PY2"/>
-                        <outlet property="dateLabel" destination="YYH-Nh-DNb" id="TBj-1m-Krc"/>
+                        <outlet property="dateLabel" destination="YYH-Nh-DNb" id="EC9-KD-PY2"/>
                         <outlet property="datePicker" destination="Gc8-Nb-DXO" id="SGb-fx-tcd"/>
-                        <outlet property="ratingLabel" destination="aY7-Jl-h7b" id="m9r-1U-hrv"/>
-                        <outlet property="ratingSlider" destination="PkA-mf-pfq" id="agg-ah-JYh"/>
                         <outlet property="ratingsLabel" destination="aY7-Jl-h7b" id="Pwk-ab-CEo"/>
-                        <outlet property="ratingsSlider" destination="PkA-mf-pfq" id="nt5-2O-KCb"/>
+                        <outlet property="ratingsSlider" destination="PkA-mf-pfq" id="t9c-f5-uk0"/>
                         <outlet property="statusPicker" destination="bjx-e1-5Fk" id="wnc-S8-2M6"/>
                         <outlet property="titleTextField" destination="JsS-oj-XwD" id="t0L-j8-Yx2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8jb-ec-UBd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2514" y="169"/>
+            <point key="canvasLocation" x="2513.04347826087" y="168.75"/>
         </scene>
     </scenes>
     <resources>

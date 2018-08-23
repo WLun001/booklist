@@ -43,13 +43,10 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         }
         appDelegate = delegate
         managedContext = appDelegate.persistentContainer.viewContext
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -81,11 +78,11 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         }
     }
 
-    @IBAction func datePickerSelectionChange(_ sender: UIDatePicker) {
+    @IBAction func datePickerDidSelect(_ sender: UIDatePicker) {
         dateLabel.text = dateFormatter.string(from: datePicker.date)
     }
-    @IBAction func sliderSelectionChange(_ sender: Any) {
-        ratingLabel.text = String(rounding(num: ratingSlider.value))
+    @IBAction func ratingsSliderDidSelect(_ sender: Any) {
+        ratingLabel.text = String(ratingSlider.value.roundToTwoPrecision())
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
@@ -120,9 +117,5 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
             
         }))
         self.present(alertController, animated: true, completion: nil)
-    }
-    
-    func rounding(num: Float) -> Float {
-        return (num * 100).rounded() / 100
     }
 }
