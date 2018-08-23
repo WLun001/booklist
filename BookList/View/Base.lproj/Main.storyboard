@@ -433,7 +433,7 @@
                     <navigationItem key="navigationItem" title="Edit Book" id="iyT-BU-0Kq">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="YAI-ax-Be4">
                             <connections>
-                                <action selector="saveBtnPressed:" destination="FTS-fX-FHF" id="Aqd-Bc-xRl"/>
+                                <action selector="saveBtnPressed:" destination="FTS-fX-FHF" id="VRu-pD-zAL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

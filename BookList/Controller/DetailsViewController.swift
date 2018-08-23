@@ -45,6 +45,11 @@ class DetailsViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let editVS = segue.destination as! EditViewController
+        editVS.selectedBook = selectedBook
+    }
+    
 
     /*
     // MARK: - Navigation

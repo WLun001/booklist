@@ -25,6 +25,7 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     let dateFormatter = DateFormatter()
     var appDelegate: AppDelegate!
     var managedContext: NSManagedObjectContext!
+    var selectedBook: Book!
 
 
     override func viewDidLoad() {
@@ -37,6 +38,14 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         statusPicker.dataSource = self
         statusPicker.delegate = self
         
+        if let book = selectedBook {
+            titleTextField.text = book.title
+            categoryPicker.selectRow(Picker.categoryList.index(of: book.category!)!,inComponent:0, animated: true)
+            authorTextField.text = book.author
+            datePicker.date = book.published_date!
+            ratingsSlider.value = book.ratings
+            statusPicker.selectRow(Picker.statusList.index(of: book.status!)!, inComponent: 0, animated: true)
+        }
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
             print("Error in app")
             return
@@ -85,6 +94,38 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     @IBAction func ratingsSliderDidSelect(_ sender: Any) {
         ratingsLabel.text = String(ratingsSlider.value.roundToTwoPrecision())
+    }
+    
+    @IBAction func saveBtnPressed(_ sender: Any) {
+        saveToDb()
+    }
+    func saveToDb() {
+        let entity = NSEntityDescription.entity(forEntityName: "Book", in: managedContext)!
+        let book = NSManagedObject(entity: entity, insertInto: managedContext)
+        book.setValue(UUID.init(), forKey: "id")
+        book.setValue(titleTextField.text, forKey: "title")
+        book.setValue(Picker.categoryList[selectedCategoryRow], forKey: "category")
+        book.setValue(authorTextField.text, forKey: "author")
+        book.setValue(datePicker.date, forKey: "published_date")
+        book.setValue(ratingsSlider.value, forKey: "ratings")
+        book.setValue(Picker.statusList[selectedStatusRow], forKey: "status")
+        
+        do {
+            try managedContext.save()
+            showAlert(message: "Saves Successfully")
+        } catch {
+            showAlert(message: ("Error: \(error.localizedDescription)"))
+        }
+    }
+    
+    func showAlert(message: String) {
+        let alertController = UIAlertController(title: "Saved Status", message:
+            message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (action) in
+            self.navigationController?.popToRootViewController(animated: true)
+            
+        }))
+        self.present(alertController, animated: true, completion: nil)
     }
     
 }
