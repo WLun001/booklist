@@ -11,9 +11,27 @@ import CoreData
 
 class DetailsViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var publishedDateLabel: UILabel!
+    @IBOutlet weak var ratingsLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    var selectedBook: BookModel!
+    let dateFormatter = DateFormatter()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        dateFormatter.dateFormat = "dd MMM, yyyy"
+        
+        if let book = selectedBook {
+            titleLabel.text = book.title
+            categoryLabel.text = book.category
+            authorLabel.text = book.author
+            publishedDateLabel.text = dateFormatter.string(from: book.publishedDate)
+            ratingsLabel.text = String(book.ratings)
+            statusLabel.text = book.status
+        }
     }
 
     override func didReceiveMemoryWarning() {

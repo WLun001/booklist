@@ -37,7 +37,7 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         datePicker.setDate(Date(), animated:true)
-        dateFormatter.dateFormat = "MMM dd, yyyy"
+        dateFormatter.dateFormat = "dd MMM, yyyy"
         
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
