@@ -18,11 +18,7 @@ class MasterTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        navigationItem.leftBarButtonItem = editButtonItem
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
             print("Error in app")
             return
@@ -40,7 +36,6 @@ class MasterTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -66,6 +61,30 @@ class MasterTableViewController: UITableViewController {
         }
         cell!.textLabel!.text = bookList[indexPath.row].title
         return cell!
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            bookList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath as IndexPath], with: .automatic)
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Book")
+            fetchRequest.predicate = NSPredicate(format: "id = %@", bookList[indexPath.row].id! as CVarArg)
+            do {
+                let books = try managedContext.fetch(fetchRequest)
+                if !books.isEmpty {
+                    let foundBook = books[0]
+                    managedContext.delete(foundBook)
+                    do {
+                        try managedContext.save()
+                        print("date deleted")
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     
