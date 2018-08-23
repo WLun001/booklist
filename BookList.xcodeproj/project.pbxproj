@@ -16,6 +16,7 @@
 		BDB120FD212CE95D003D7467 /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB120FC212CE95D003D7467 /* MasterTableViewController.swift */; };
 		BDB655672118A8FB00C88428 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB655662118A8FB00C88428 /* AddViewController.swift */; };
 		BDBE0280212F11B4007038BA /* BookList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BDBE027E212F11B4007038BA /* BookList.xcdatamodeld */; };
+		BDBE0282212F1CC4007038BA /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBE0281212F1CC4007038BA /* Picker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		BDB120FC212CE95D003D7467 /* MasterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTableViewController.swift; sourceTree = "<group>"; };
 		BDB655662118A8FB00C88428 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		BDBE027F212F11B4007038BA /* BookList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BookList.xcdatamodel; sourceTree = "<group>"; };
+		BDBE0281212F1CC4007038BA /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				BDA938A4210D79480090D97D /* Main.storyboard */,
 				BDA938AC210D79490090D97D /* LaunchScreen.storyboard */,
+				BDBE0281212F1CC4007038BA /* Picker.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			files = (
 				BDA938A3210D79480090D97D /* EditViewController.swift in Sources */,
 				BDB120FD212CE95D003D7467 /* MasterTableViewController.swift in Sources */,
+				BDBE0282212F1CC4007038BA /* Picker.swift in Sources */,
 				BDA938A1210D79480090D97D /* AppDelegate.swift in Sources */,
 				BDBE0280212F11B4007038BA /* BookList.xcdatamodeld in Sources */,
 				BDB655672118A8FB00C88428 /* AddViewController.swift in Sources */,

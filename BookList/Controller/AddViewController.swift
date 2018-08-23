@@ -10,10 +10,6 @@ import UIKit
 import CoreData
 
 class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
-    enum Picker: Int {
-        case categoryPicker = 0
-        case statusPicker = 1
-    }
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var categoryPicker: UIPickerView!
@@ -24,8 +20,6 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     @IBOutlet weak var ratingSlider: UISlider!
     @IBOutlet weak var statusPicker: UIPickerView!
     
-    let statusList = ["Read", "Not Yet Read", "Reading"]
-    let categoryList = ["Fiction", "Adventure", "Romance"]
     var selectedCategoryRow: Int = 0
     var selectedStatusRow: Int = 0
     
@@ -63,24 +57,24 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == Picker.categoryPicker.rawValue {
-            return categoryList.count
+        if pickerView.tag == Picker.Picker.categoryPicker.rawValue {
+            return Picker.categoryList.count
         } else {
-            return statusList.count
+            return Picker.statusList.count
         }
         
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView.tag == Picker.categoryPicker.rawValue {
-            return categoryList[row]
+        if pickerView.tag == Picker.Picker.categoryPicker.rawValue {
+            return Picker.categoryList[row]
         } else {
-            return statusList[row]
+            return Picker.statusList[row]
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag == Picker.categoryPicker.rawValue {
+        if pickerView.tag == Picker.Picker.categoryPicker.rawValue {
             selectedCategoryRow = row
         } else {
             selectedStatusRow = row
@@ -104,11 +98,11 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         let book = NSManagedObject(entity: entity, insertInto: managedContext)
         book.setValue(UUID.init(), forKey: "id")
         book.setValue(titleTextField.text, forKey: "title")
-        book.setValue(categoryList[selectedCategoryRow], forKey: "category")
+        book.setValue(Picker.categoryList[selectedCategoryRow], forKey: "category")
         book.setValue(authorTextField.text, forKey: "author")
         book.setValue(datePicker.date, forKey: "published_date")
         book.setValue(ratingSlider.value, forKey: "ratings")
-        book.setValue(statusList[selectedStatusRow], forKey: "status")
+        book.setValue(Picker.statusList[selectedStatusRow], forKey: "status")
         
         do {
             try managedContext.save()
@@ -131,17 +125,4 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     func rounding(num: Float) -> Float {
         return (num * 100).rounded() / 100
     }
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
