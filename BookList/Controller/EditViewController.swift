@@ -97,24 +97,31 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
-        saveToDb()
+        updateDb()
     }
-    func saveToDb() {
-        let entity = NSEntityDescription.entity(forEntityName: "Book", in: managedContext)!
-        let book = NSManagedObject(entity: entity, insertInto: managedContext)
-        book.setValue(UUID.init(), forKey: "id")
-        book.setValue(titleTextField.text, forKey: "title")
-        book.setValue(Picker.categoryList[selectedCategoryRow], forKey: "category")
-        book.setValue(authorTextField.text, forKey: "author")
-        book.setValue(datePicker.date, forKey: "published_date")
-        book.setValue(ratingsSlider.value, forKey: "ratings")
-        book.setValue(Picker.statusList[selectedStatusRow], forKey: "status")
-        
+    func updateDb() {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Book")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", selectedBook.id! as CVarArg)
         do {
-            try managedContext.save()
-            showAlert(message: "Saves Successfully")
+            let books = try managedContext.fetch(fetchRequest)
+            if !books.isEmpty {
+                let foundBook = books[0]
+                foundBook.setValue(titleTextField.text, forKey: "title")
+                foundBook.setValue(Picker.categoryList[selectedCategoryRow], forKey: "category")
+                foundBook.setValue(authorTextField.text, forKey: "author")
+                foundBook.setValue(datePicker.date, forKey: "published_date")
+                foundBook.setValue(ratingsSlider.value, forKey: "ratings")
+                foundBook.setValue(Picker.statusList[selectedStatusRow], forKey: "status")
+                
+                do {
+                    try managedContext.save()
+                    print("date updated")
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
         } catch {
-            showAlert(message: ("Error: \(error.localizedDescription)"))
+            print(error.localizedDescription)
         }
     }
     
