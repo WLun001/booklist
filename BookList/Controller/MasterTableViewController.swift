@@ -11,7 +11,13 @@ import CoreData
 
 class MasterTableViewController: UITableViewController {
     
+    enum Segue: String {
+        case add = "toAdd"
+        case details = "toDetails"
+    }
+    
     var bookList = [Book]()
+    var newBook: Book!
     var appDelegate: AppDelegate!
     var managedContext: NSManagedObjectContext!
 
@@ -89,11 +95,15 @@ class MasterTableViewController: UITableViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let indexPath = tableView.indexPathForSelectedRow {
-            let detailsVC = segue.destination as! DetailsViewController
-            detailsVC.detailsBook = bookList[indexPath.row]
-            
-            
+        if let identifier = segue.identifier {
+            if identifier == Segue.details.rawValue {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let detailsVC = segue.destination as! DetailsViewController
+                    detailsVC.detailsBook = bookList[indexPath.row]
+                }
+            } else if identifier == Segue.add.rawValue {
+                newBook = nil
+            }
         }
     }
         

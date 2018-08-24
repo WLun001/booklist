@@ -27,7 +27,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="W3f-jD-acL"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toDetails" id="W3f-jD-acL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -39,7 +39,7 @@
                     <navigationItem key="navigationItem" title="Book List" id="zXG-rV-7sd">
                         <barButtonItem key="rightBarButtonItem" title="Add" id="T8n-hw-4At">
                             <connections>
-                                <segue destination="dKE-GR-5bK" kind="show" id="Wk5-9o-SyQ"/>
+                                <segue destination="dKE-GR-5bK" kind="show" identifier="toAdd" id="Wk5-9o-SyQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -151,7 +151,7 @@
                     <navigationItem key="navigationItem" title="Book Details" id="CdD-JD-Vj3">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="ycx-zE-hsS">
                             <connections>
-                                <segue destination="FTS-fX-FHF" kind="show" id="3ql-3c-22o"/>
+                                <segue destination="FTS-fX-FHF" kind="show" identifier="" id="3ql-3c-22o"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
