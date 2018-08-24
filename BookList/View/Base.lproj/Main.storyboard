@@ -282,7 +282,7 @@
                     <navigationItem key="navigationItem" title="Add Book" id="91x-Ox-fGK">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="gay-S5-JLk">
                             <connections>
-                                <action selector="saveBtnPressed:" destination="dKE-GR-5bK" id="DH0-0P-J3v"/>
+                                <segue destination="MTH-40-hHu" kind="unwind" unwindAction="returnFromAddWithSegue:" id="9kx-jh-BFc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -298,6 +298,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ef-bT-Y5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="MTH-40-hHu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1629" y="-263"/>
         </scene>

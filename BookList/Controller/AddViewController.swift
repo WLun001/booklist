@@ -85,9 +85,8 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         ratingLabel.text = String(ratingSlider.value.roundToTwoPrecision())
     }
     
-    @IBAction func saveBtnPressed(_ sender: Any) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         saveToDb()
-        
     }
     
     func saveToDb() {
@@ -103,19 +102,16 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         
         do {
             try managedContext.save()
-            showAlert(message: "Saves Successfully")
+            print("saves successfully")
         } catch {
-            showAlert(message: ("Error: \(error.localizedDescription)"))
+            print(error.localizedDescription)
         }
     }
     
     func showAlert(message: String) {
         let alertController = UIAlertController(title: "Saved Status", message:
             message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (action) in
-            self.navigationController?.popToRootViewController(animated: true)
-            
-        }))
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil ))
         self.present(alertController, animated: true, completion: nil)
     }
 }

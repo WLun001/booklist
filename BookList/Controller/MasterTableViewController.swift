@@ -31,13 +31,7 @@ class MasterTableViewController: UITableViewController {
         }
         appDelegate = delegate
         managedContext = appDelegate.persistentContainer.viewContext
-       let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Book")
-        do {
-            bookList = try managedContext.fetch(fetchRequest) as! [Book]
-            bookList.sort(by: { ($0.title?.lowercased())! < ($1.title?.lowercased())!})
-        } catch {
-            print(error.localizedDescription)
-        }
+        fetchData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,6 +87,22 @@ class MasterTableViewController: UITableViewController {
         }
     }
     
+    func fetchData() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Book")
+        do {
+            bookList = try managedContext.fetch(fetchRequest) as! [Book]
+            bookList.sort(by: { ($0.title?.lowercased())! < ($1.title?.lowercased())!})
+            print(bookList.count)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    
+    @IBAction func returnFromAdd(segue: UIStoryboardSegue) {
+        fetchData()
+        tableView.reloadData()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
