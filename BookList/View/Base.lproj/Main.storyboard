@@ -433,7 +433,7 @@
                     <navigationItem key="navigationItem" title="Edit Book" id="iyT-BU-0Kq">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="YAI-ax-Be4">
                             <connections>
-                                <action selector="saveBtnPressed:" destination="FTS-fX-FHF" id="VRu-pD-zAL"/>
+                                <segue destination="b57-EZ-OD7" kind="unwind" unwindAction="returnFromEditWithSegue:" id="UiL-h1-nbc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -449,6 +449,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8jb-ec-UBd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="b57-EZ-OD7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2513.04347826087" y="168.75"/>
         </scene>

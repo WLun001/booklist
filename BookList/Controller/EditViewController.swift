@@ -26,6 +26,7 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     var appDelegate: AppDelegate!
     var managedContext: NSManagedObjectContext!
     var selectedBook: Book!
+    var foundBook: Book!
 
 
     override func viewDidLoad() {
@@ -96,8 +97,16 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         ratingsLabel.text = String(ratingsSlider.value.roundToTwoPrecision())
     }
     
-    @IBAction func saveBtnPressed(_ sender: Any) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         updateDb()
+        selectedBook = foundBook
+//        selectedBook.title = titleTextField.text
+//        selectedBook.category = Picker.categoryList[selectedCategoryRow]
+//        selectedBook.author = authorTextField.text
+//        selectedBook.published_date = datePicker.date
+//        selectedBook.ratings = ratingsSlider.value
+//        selectedBook.status = Picker.statusList[selectedStatusRow]
+    
     }
     func updateDb() {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Book")
@@ -105,7 +114,7 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         do {
             let books = try managedContext.fetch(fetchRequest)
             if !books.isEmpty {
-                let foundBook = books[0]
+                foundBook = books[0] as! Book
                 foundBook.setValue(titleTextField.text, forKey: "title")
                 foundBook.setValue(Picker.categoryList[selectedCategoryRow], forKey: "category")
                 foundBook.setValue(authorTextField.text, forKey: "author")

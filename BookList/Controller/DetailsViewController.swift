@@ -17,14 +17,14 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var publishedDateLabel: UILabel!
     @IBOutlet weak var ratingsLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
-    var selectedBook: Book!
+    var detailsBook: Book!
     let dateFormatter = DateFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         dateFormatter.dateFormat = "dd MMM, yyyy"
         
-        if let book = selectedBook {
+        if let book = detailsBook {
             titleLabel.text = book.title
             categoryLabel.text = book.category
             authorLabel.text = book.author
@@ -36,7 +36,6 @@ class DetailsViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func close(segue: UIStoryboardSegue) {
@@ -45,20 +44,17 @@ class DetailsViewController: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let editVS = segue.destination as! EditViewController
-        editVS.selectedBook = selectedBook
+    @IBAction func returnFromEdit(segue: UIStoryboardSegue) {
+        titleLabel.text = detailsBook.title
+        categoryLabel.text = detailsBook.category
+        authorLabel.text = detailsBook.author
+        publishedDateLabel.text = dateFormatter.string(from: detailsBook.published_date!)
+        ratingsLabel.text = String(detailsBook.ratings)
+        statusLabel.text = detailsBook.status
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let editVS = segue.destination as! EditViewController
+        editVS.selectedBook = detailsBook
     }
-    */
-
 }

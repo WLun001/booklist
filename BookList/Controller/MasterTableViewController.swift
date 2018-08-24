@@ -91,7 +91,7 @@ class MasterTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = tableView.indexPathForSelectedRow {
             let detailsVC = segue.destination as! DetailsViewController
-            detailsVC.selectedBook = bookList[indexPath.row]
+            detailsVC.detailsBook = bookList[indexPath.row]
             
             
         }
