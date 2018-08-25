@@ -31,7 +31,11 @@ class MasterTableViewController: UITableViewController {
         }
         appDelegate = delegate
         managedContext = appDelegate.persistentContainer.viewContext
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         fetchData()
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,10 +69,10 @@ class MasterTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            bookList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath as IndexPath], with: .automatic)
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Book")
             fetchRequest.predicate = NSPredicate(format: "id = %@", bookList[indexPath.row].id! as CVarArg)
+            bookList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath as IndexPath], with: .automatic)
             do {
                 let books = try managedContext.fetch(fetchRequest)
                 if !books.isEmpty {
@@ -84,6 +88,9 @@ class MasterTableViewController: UITableViewController {
             } catch {
                 print(error.localizedDescription)
             }
+            fetchData()
+            tableView.reloadData()
+
         }
     }
     
@@ -100,8 +107,6 @@ class MasterTableViewController: UITableViewController {
     
     
     @IBAction func returnFromAdd(segue: UIStoryboardSegue) {
-        fetchData()
-        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
