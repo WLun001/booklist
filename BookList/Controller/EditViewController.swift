@@ -44,7 +44,9 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             categoryPicker.selectRow(Picker.categoryList.index(of: book.category!)!,inComponent:0, animated: true)
             authorTextField.text = book.author
             datePicker.date = book.published_date!
+            dateLabel.text = dateFormatter.string(from: datePicker.date)
             ratingsSlider.value = book.ratings
+            ratingsLabel.text = String(book.ratings.roundToTwoPrecision())
             statusPicker.selectRow(Picker.statusList.index(of: book.status!)!, inComponent: 0, animated: true)
         }
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -88,6 +90,7 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
             selectedStatusRow = row
         }
     }
+    
     @IBAction func datePickerDidSelect(_ sender: Any) {
         dateLabel.text = dateFormatter.string(from: datePicker.date)
         
@@ -100,14 +103,8 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         updateDb()
         selectedBook = foundBook
-//        selectedBook.title = titleTextField.text
-//        selectedBook.category = Picker.categoryList[selectedCategoryRow]
-//        selectedBook.author = authorTextField.text
-//        selectedBook.published_date = datePicker.date
-//        selectedBook.ratings = ratingsSlider.value
-//        selectedBook.status = Picker.statusList[selectedStatusRow]
-    
     }
+    
     func updateDb() {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Book")
         fetchRequest.predicate = NSPredicate(format: "id = %@", selectedBook.id! as CVarArg)
@@ -143,6 +140,5 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         }))
         self.present(alertController, animated: true, completion: nil)
     }
-    
 }
 
