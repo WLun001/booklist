@@ -29,7 +29,7 @@ class DetailsViewController: UIViewController {
             categoryLabel.text = book.category
             authorLabel.text = book.author
             publishedDateLabel.text = dateFormatter.string(from: book.published_date!)
-            ratingsLabel.text = String(book.ratings)
+            ratingsLabel.text = String(book.ratings.roundToTwoPrecision())
             statusLabel.text = book.status
         }
     }
