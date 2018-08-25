@@ -89,6 +89,15 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         saveToDb()
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (authorTextField.text?.isEmpty)! || (titleTextField.text?.isEmpty)! {
+            showAlert(message: "Please complete all required fields")
+            return false
+        } else {
+            return true
+        }
+    }
+    
     func saveToDb() {
         let entity = NSEntityDescription.entity(forEntityName: "Book", in: managedContext)!
         let book = NSManagedObject(entity: entity, insertInto: managedContext)
@@ -109,7 +118,7 @@ class AddViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
     
     func showAlert(message: String) {
-        let alertController = UIAlertController(title: "Saved Status", message:
+        let alertController = UIAlertController(title: "Warning", message:
             message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil ))
         self.present(alertController, animated: true, completion: nil)

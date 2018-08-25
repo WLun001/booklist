@@ -105,6 +105,15 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
         selectedBook = foundBook
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (authorTextField.text?.isEmpty)! || (titleTextField.text?.isEmpty)! {
+            showAlert(message: "Please complete all required fields")
+            return false
+        } else {
+            return true
+        }
+    }
+    
     func updateDb() {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Book")
         fetchRequest.predicate = NSPredicate(format: "id = %@", selectedBook.id! as CVarArg)
@@ -132,12 +141,9 @@ class EditViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func showAlert(message: String) {
-        let alertController = UIAlertController(title: "Saved Status", message:
+        let alertController = UIAlertController(title: "Warning", message:
             message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (action) in
-            self.navigationController?.popToRootViewController(animated: true)
-            
-        }))
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
 }
